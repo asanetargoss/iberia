@@ -22,8 +22,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.chunk.Chunk;
@@ -96,18 +96,18 @@ public class HardStoneChallenge extends Challenge {
 		}
 
 		ItemStack heldItemStack = event.getEntityPlayer().getHeldItemMainhand();
-		if (heldItemStack == null || !(heldItemStack.getItem() instanceof ItemPickaxe)) {
+		if (heldItemStack == null || !(heldItemStack.getItem() instanceof ItemTool)) {
 			return;
 		}
 
-		ItemPickaxe pickaxe = (ItemPickaxe)heldItemStack.getItem();
-		String material = pickaxe.getToolMaterial().toString().toLowerCase();
+		ItemTool tool = (ItemTool)heldItemStack.getItem();
+		String material = tool.getToolMaterial().toString().toLowerCase();
 		float slowdown = 10.0F;
 		if (slowdowns.containsKey(material)) {
 			slowdown = slowdowns.get(material);
 		}
 		else {
-			FMLLog.info("[Iberia] New pickaxe type: %s", pickaxe.getToolMaterial());
+			FMLLog.info("[Iberia] New tool type: %s", tool.getToolMaterial());
 		}
 
 		event.setNewSpeed(event.getOriginalSpeed() / slowdown);
