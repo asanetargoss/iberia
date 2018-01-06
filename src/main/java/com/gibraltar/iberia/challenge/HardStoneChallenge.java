@@ -101,12 +101,23 @@ public class HardStoneChallenge extends Challenge {
 		}
 
 		ItemTool tool = (ItemTool)heldItemStack.getItem();
-		String material = tool.getToolMaterial().toString().toLowerCase();
 		float slowdown = 10.0F;
+		boolean newMaterial = true;
+		
+		String material = tool.getToolMaterial().toString().toLowerCase();
 		if (slowdowns.containsKey(material)) {
 			slowdown = slowdowns.get(material);
+			newMaterial = false;
 		}
-		else {
+		
+		String toolName = tool.getRegistryName().toString().toLowerCase();
+		if (slowdowns.containsKey(toolName)) {
+			slowdown = slowdowns.get(toolName);
+			newMaterial = false;
+		}
+		
+		if (newMaterial)
+		{
 			FMLLog.info("[Iberia] New tool type: %s", tool.getToolMaterial());
 		}
 
