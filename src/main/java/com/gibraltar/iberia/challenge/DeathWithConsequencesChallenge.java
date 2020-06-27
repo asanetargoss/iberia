@@ -33,6 +33,7 @@ public class DeathWithConsequencesChallenge extends Challenge {
     private int distanceToNewSpawnHard = 1500;
     private int distanceToNewSpawnNormal = 1000;
     private int distanceToNewSpawnEasy = 500;
+    private boolean resetTimeOnRespawn = true;
 
     @Override
 	public boolean hasSubscriptions() {
@@ -49,6 +50,8 @@ public class DeathWithConsequencesChallenge extends Challenge {
         distanceToNewSpawnNormal = prop.getInt(1000);
         prop = config.get(name, "distanceToNewSpawnEasy", 500);
         distanceToNewSpawnEasy = prop.getInt(500);
+        prop = config.get(name, "resetTimeOnRespawn", true);
+        resetTimeOnRespawn = prop.getBoolean(true);
 	}
 
     @SubscribeEvent
@@ -164,8 +167,10 @@ public class DeathWithConsequencesChallenge extends Challenge {
 
     @SubscribeEvent
     public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        MinecraftServer server = event.player.getServer();
-        setAllWorldTimes(server, 0);
+        if (resetTimeOnRespawn) {
+            MinecraftServer server = event.player.getServer();
+            setAllWorldTimes(server, 0);
+        }
     }
 
     private void setAllWorldTimes(MinecraftServer server, int time)
