@@ -47,6 +47,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -186,7 +187,7 @@ public class ArmorSlowsCraftingChallenge extends Challenge {
 		GlStateManager.enableDepth();				
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority=EventPriority.HIGH)
 	@SideOnly(Side.CLIENT)
 	public void onMouseInput(GuiScreenEvent.MouseInputEvent.Pre event) {
 	    if (!isSlowGui(event.getGui())) {
@@ -198,7 +199,7 @@ public class ArmorSlowsCraftingChallenge extends Challenge {
 		}
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority=EventPriority.HIGH)
 	@SideOnly(Side.CLIENT)
 	public void onKeyboardInput(GuiScreenEvent.KeyboardInputEvent.Pre event) {
 	    if (!isSlowGui(event.getGui())) {
