@@ -28,7 +28,7 @@ group = "com.gibraltar.iberia" // http://maven.apache.org/guides/mini/guide-nami
 archivesBaseName = "iberia"
 
 minecraft {
-    version = "1.10-12.18.0.1986-1.10.0"
+    version = "1.10.2-12.18.3.2511"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
